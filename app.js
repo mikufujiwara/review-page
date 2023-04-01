@@ -26,12 +26,18 @@ const showInfo = (idx) => {
 };
 
 prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + customerInfo.length) % customerInfo.length;
+  currentIndex--;
+  if (currentIndex <0) {
+    currentIndex = customerInfo.length -1;
+  }
   showInfo(currentIndex);
 });
 
 nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % customerInfo.length;
+  currentIndex++;
+  if (currentIndex >= customerInfo.length) {
+    currentIndex = 0;
+  }
   showInfo(currentIndex);
 });
 
