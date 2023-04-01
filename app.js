@@ -5,7 +5,7 @@ const desc = document.querySelector("p");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 const randomBtn = document.querySelector(".random-btn");
-
+let currentIndex = 0;
 let customerInfo;
 
 fetch("customers.json")
@@ -15,10 +15,7 @@ fetch("customers.json")
   .then(function (data) {
     console.log(data);
     customerInfo = data;
-    image.src = customerInfo[0].image;
-    name.textContent = customerInfo[0].fname + " " + customerInfo[0].lname;
-    role.textContent = customerInfo[0].role;
-    desc.textContent = customerInfo[0].desc;
+    showInfo(currentIndex);
   });
 
 const showInfo = (idx) => {
@@ -27,8 +24,6 @@ const showInfo = (idx) => {
   role.textContent = customerInfo[idx].role;
   desc.textContent = customerInfo[idx].desc;
 };
-
-let currentIndex = 0;
 
 prevBtn.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + customerInfo.length) % customerInfo.length;
